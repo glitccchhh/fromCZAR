@@ -70,7 +70,7 @@
 
   <div class="gallery">
     <img src="IMG-20250212-WA0041.jpg" alt="Memory 1">
-    <img src="IMG-20250212-WA0040.jpg" alt="Memory 2">
+    <img src="IMG-20250212-WA0043.jpg" alt="Memory 2">
   </div>
   
   <video width="320" height="240" controls autoplay loop>
@@ -78,7 +78,7 @@
   Your browser does not support the video tag.
 </video>
 
-  <audio autoplay loop>
+  <audio autoplay loop muted>
     <source src="Beautiful Things [www.sangeethe.com].mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
