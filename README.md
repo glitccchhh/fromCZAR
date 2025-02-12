@@ -63,7 +63,7 @@
 </head>
 <body>
   <h1>To Tolu❤️</h1>
-  <p>You mean the world to me. Happy Valentine's Day!</p>
+  <p>You mean the world to me. Happy Valentine's Day in Addy!</p>
   <p>Will you be my Valentine?</p>
   <button onclick="alert('Yay! ❤️')">Yes</button>
   <button onclick="alert('Aww, I’ll try harder! 😊')">Not Yet</button>
@@ -79,7 +79,7 @@
 </video>
 
   <audio autoplay loop muted>
-    <source src="Beautiful Things [www.sangeethe.com].mp3" type="audio/mpeg">
+    <source src="beautiful-things.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 </body>
