@@ -20,9 +20,14 @@
       align-items: center;
     }
 
-    h1, p {
-      max-width: 90%;
-      word-wrap: break-word;
+    h1 {
+      font-size: 3rem;
+      animation: fadeIn 2s, glow 2s infinite alternate;
+    }
+
+    p {
+      font-size: 1.5rem;
+      animation: slideIn 2s;
     }
 
     button {
@@ -56,8 +61,25 @@
       padding: 20px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
+      animation: fadeIn 1s;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 20px #ff66b2; }
+    }
+
+    /* Falling Hearts, Teddy Bears, and Roses */
     .falling-item {
       font-size: 18px;
       position: fixed;
@@ -95,17 +117,20 @@
   <button id="playMusic" onclick="playAudio()">Play Music</button>
 
   <audio id="bg-music" loop>
-    <source src="assets/beautiful-things.mp3" type="audio/mpeg">
+    <source src="beautiful-things.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
   <script>
     function playAudio() {
       let audio = document.getElementById("bg-music");
-      if (audio.paused) {
-        audio.play().then(() => {
-          document.getElementById("playMusic").style.display = "none";
+      let playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          document.getElementById("playMusic").innerText = "Playing 🎶";
         }).catch(error => {
+          alert("Tap anywhere on the page and press play again.");
           console.log("Audio play blocked: ", error);
         });
       }
@@ -126,8 +151,6 @@
       fallingItem.className = "falling-item";
       fallingItem.style.left = Math.random() * 100 + "vw";
       fallingItem.style.animationDuration = Math.random() * 3 + 2 + "s";
-      fallingItem.style.position = "fixed";
-      fallingItem.style.top = "-50px";
       fallingItem.style.fontSize = Math.random() * 25 + 20 + "px";
 
       document.body.appendChild(fallingItem);
