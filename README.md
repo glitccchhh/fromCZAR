@@ -38,6 +38,11 @@
     .gallery img:hover {
       transform: scale(1.1);
     }
+    video {
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
     button {
       padding: 10px 20px;
       font-size: 1.2rem;
@@ -62,7 +67,7 @@
   </style>
 </head>
 <body>
-  <h1>To Tolu❤️</h1>
+  <h1>To Tolu ❤️</h1>
   <p>You mean the world to me. Happy Valentine's Day in Addy!</p>
   <p>Will you be my Valentine?</p>
   <button onclick="alert('Yay! ❤️')">Yes</button>
@@ -72,13 +77,13 @@
     <img src="IMG-20250212-WA0041.jpg" alt="Memory 1">
     <img src="IMG-20250212-WA0040.jpg" alt="Memory 2">
   </div>
-  
-  <video width="320" height="240" controls autoplay loop>
-  <source src="VID-20250212-WA0035.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
-  <audio autoplay loop muted>
+  <video width="320" height="240" controls autoplay loop>
+    <source src="VID-20250212-WA0035.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <audio controls autoplay loop muted>
     <source src="beautiful-things.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
