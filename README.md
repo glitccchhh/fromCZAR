@@ -10,23 +10,24 @@
       background: linear-gradient(135deg, #8A2BE2, #DDA0DD);
       color: white;
       text-align: center;
-      padding: 50px;
+      padding: 20px;
       margin: 0;
-      overflow: hidden;
-      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
-    h1 {
-      font-size: 3rem;
-      animation: fadeIn 2s, glow 2s infinite alternate;
-    }
-
-    p {
-      font-size: 1.5rem;
-      animation: slideIn 2s;
+    h1, p {
+      max-width: 90%;
+      word-wrap: break-word;
     }
 
     button {
+      width: 80%;
+      max-width: 250px;
       padding: 12px 24px;
       font-size: 1.2rem;
       border: none;
@@ -42,32 +43,11 @@
       background: #DA70D6;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #fff; }
-      to { text-shadow: 0 0 20px #ff66b2; }
-    }
-
-    /* Gift Box */
     .gift-box {
       font-size: 4rem;
       cursor: pointer;
       margin: 20px 0;
       animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
     }
 
     .hidden-message {
@@ -76,11 +56,10 @@
       padding: 20px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
-      animation: fadeIn 1s;
     }
 
-    /* Falling Items */
     .falling-item {
+      font-size: 18px;
       position: fixed;
       top: -50px;
       animation: fall linear infinite;
@@ -91,22 +70,6 @@
       to { transform: translateY(100vh) scale(0.5); opacity: 0; }
     }
 
-    /* Confetti Effect */
-    .confetti {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: pink;
-      opacity: 0.7;
-      animation: confetti-fall 3s infinite linear;
-    }
-
-    @keyframes confetti-fall {
-      0% { transform: translateY(0) rotate(0); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
-
-    /* Responsive Design */
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       p { font-size: 1.2rem; }
@@ -117,7 +80,6 @@
   <h1>To My Sweet Valentine 💜🌹</h1>
   <p>You make my world brighter. Happy Valentine’s Day, Tolu! 💖</p>
 
-  <!-- Gift Box and Hidden Message -->
   <div class="gift-box" onclick="revealMessage()">🎁</div>
   <div id="hiddenMessage" class="hidden-message">
     <p>💜 A Special Note for You, Tolu 💜</p>
@@ -129,7 +91,6 @@
   <button onclick="alert('Yay! 💜')">Yes</button>
   <button onclick="alert('Aww, I’ll try harder! 😊')">Not Yet</button>
 
-  <!-- Music Section -->
   <p>Click "Play Music" to enjoy the soundtrack! 🎶</p>
   <button id="playMusic" onclick="playAudio()">Play Music</button>
 
@@ -141,42 +102,33 @@
   <script>
     function playAudio() {
       let audio = document.getElementById("bg-music");
-      audio.play();
-      document.getElementById("playMusic").style.display = "none";
+      if (audio.paused) {
+        audio.play().then(() => {
+          document.getElementById("playMusic").style.display = "none";
+        }).catch(error => {
+          console.log("Audio play blocked: ", error);
+        });
+      }
     }
 
     function revealMessage() {
       let message = document.getElementById("hiddenMessage");
       message.style.display = "block";
-      document.querySelector(".gift-box").style.display = "none"; // Hide the gift box after clicking
+      document.querySelector(".gift-box").style.display = "none";
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      let audio = document.getElementById("bg-music");
-      let playPromise = audio.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          document.getElementById("playMusic").style.display = "none";
-        }).catch(() => {
-          console.log("Autoplay blocked, user must click play button.");
-        });
-      }
-    });
-
-    // Falling Elements (Hearts, Teddy Bears, Roses)
     function createFallingItem() {
-      let items = ["💜", "🧸", "🌹"]; // Purple Heart, Teddy Bear, Rose
+      let items = ["💜", "🧸", "🌹"];
       let randomItem = items[Math.floor(Math.random() * items.length)];
 
       let fallingItem = document.createElement("div");
       fallingItem.innerHTML = randomItem;
       fallingItem.className = "falling-item";
       fallingItem.style.left = Math.random() * 100 + "vw";
-      fallingItem.style.animationDuration = Math.random() * 3 + 2 + "s"; // Random speed
+      fallingItem.style.animationDuration = Math.random() * 3 + 2 + "s";
       fallingItem.style.position = "fixed";
-      fallingItem.style.top = "-50px"; // Start above screen
-      fallingItem.style.fontSize = Math.random() * 25 + 20 + "px"; // Random sizes
+      fallingItem.style.top = "-50px";
+      fallingItem.style.fontSize = Math.random() * 25 + 20 + "px";
 
       document.body.appendChild(fallingItem);
       
@@ -184,22 +136,7 @@
         fallingItem.remove();
       }, 5000);
     }
-    setInterval(createFallingItem, 300); // Items appear every 0.3s
-
-    // Confetti Effect
-    function createConfetti() {
-      let confetti = document.createElement("div");
-      confetti.className = "confetti";
-      confetti.style.left = Math.random() * 100 + "vw";
-      confetti.style.backgroundColor = ["#FF69B4", "#FFD700", "#FF4500"][Math.floor(Math.random() * 3)];
-      confetti.style.animationDuration = Math.random() * 2 + 2 + "s"; // Random speed
-      document.body.appendChild(confetti);
-      
-      setTimeout(() => {
-        confetti.remove();
-      }, 3000);
-    }
-    setInterval(createConfetti, 200);
+    setInterval(createFallingItem, 300);
   </script>
 </body>
 </html>
