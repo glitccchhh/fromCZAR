@@ -81,6 +81,28 @@
       to { text-shadow: 0 0 20px #ff66b2; }
     }
 
+    /* Gift Box */
+    .gift-box {
+      font-size: 4rem;
+      cursor: pointer;
+      margin: 20px 0;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hidden-message {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      animation: fadeIn 1s;
+    }
+
     /* Falling Items */
     .falling-item {
       position: fixed;
@@ -108,11 +130,26 @@
       100% { transform: translateY(100vh) rotate(360deg); }
     }
 
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1.2rem; }
+      video { width: 100%; height: auto; }
+    }
   </style>
 </head>
 <body>
   <h1>To My Sweet Valentine 💜🌹</h1>
   <p>You make my world brighter. Happy Valentine’s Day, Tolu! 💖</p>
+
+  <!-- Gift Box and Hidden Message -->
+  <div class="gift-box" onclick="revealMessage()">🎁</div>
+  <div id="hiddenMessage" class="hidden-message">
+    <p>💜 A Special Note for You, Tolu 💜</p>
+    <p>From the first moment I saw you, I knew you were special. Every “no” has never made me feel like giving up—because I believe in something real, something worth waiting for. You’re amazing in ways I can’t describe, and all I want is the chance to make you smile every single day.</p>
+    <p>So here I am, once again, asking…</p>
+  </div>
+
   <p>Will you be my Valentine?</p>
   <button onclick="alert('Yay! 💜')">Yes</button>
   <button onclick="alert('Aww, I’ll try harder! 😊')">Not Yet</button>
@@ -127,6 +164,7 @@
     Your browser does not support the video tag.
   </video>
 
+  <p>Click "Play Music" to enjoy the soundtrack! 🎶</p>
   <button id="playMusic" onclick="playAudio()">Play Music</button>
 
   <audio id="bg-music" loop>
@@ -139,6 +177,12 @@
       let audio = document.getElementById("bg-music");
       audio.play();
       document.getElementById("playMusic").style.display = "none";
+    }
+
+    function revealMessage() {
+      let message = document.getElementById("hiddenMessage");
+      message.style.display = "block";
+      document.querySelector(".gift-box").style.display = "none"; // Hide the gift box after clicking
     }
 
     document.addEventListener("DOMContentLoaded", function() {
