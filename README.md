@@ -26,30 +26,6 @@
       animation: slideIn 2s;
     }
 
-    .gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .gallery img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
-    .gallery img:hover {
-      transform: scale(1.1);
-    }
-
-    video {
-      margin-top: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
     button {
       padding: 12px 24px;
       font-size: 1.2rem;
@@ -134,7 +110,6 @@
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       p { font-size: 1.2rem; }
-      video { width: 100%; height: auto; }
     }
   </style>
 </head>
@@ -154,16 +129,7 @@
   <button onclick="alert('Yay! 💜')">Yes</button>
   <button onclick="alert('Aww, I’ll try harder! 😊')">Not Yet</button>
 
-  <div class="gallery">
-    <img src="assets/IMG-20250212-WA0041.jpg" alt="Memory 1">
-    <img src="assets/IMG-20250212-WA0040.jpg" alt="Memory 2">
-  </div>
-
-  <video width="320" height="240" controls autoplay loop>
-    <source src="assets/VID-20250212-WA0035.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
+  <!-- Music Section -->
   <p>Click "Play Music" to enjoy the soundtrack! 🎶</p>
   <button id="playMusic" onclick="playAudio()">Play Music</button>
 
